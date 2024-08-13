@@ -8,6 +8,7 @@ async function getCategoryData(){
     try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood');
         const data = await response.json();
+        // print the data
         console.log(data);
     }catch (error) {
         console.log('Something went wrong',error);
