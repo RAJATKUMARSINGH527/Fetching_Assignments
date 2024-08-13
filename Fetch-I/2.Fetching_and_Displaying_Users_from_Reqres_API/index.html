@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetching and Displaying Users from Reqres API</title>
+    <style>
+        
+        #allUsers{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+            
+            
+        }
+        .userdiv{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="fetchUsers">Fetch Users</button>
+    <div id="allUsers"></div>
+
+    <script src="index.js"></script>
+    
+</body>
+</html>
