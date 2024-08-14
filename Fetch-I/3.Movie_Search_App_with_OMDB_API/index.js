@@ -1,41 +1,38 @@
-searchBtn = document.getElementById("search-btn")
-searchbox = document.getElementById("search-box")
-moviecard = document.getElementById("movie")
+const InputMovies = document.getElementById('moviesInp');
+const SearchBtn = document.getElementById('SearchBtn');
+const mainDiv = document.querySelector('.movies');
 
+function DisplayMovies(movie) {
+    mainDiv.innerHTML = '';
 
-const displayMovies = (el) => {  
-    moviecard.innerHTML = "";
-    moviecard.innerHTML =
-        `
-            <p class="title">Title :- ${el.Title}</p>
-            <p class="releaseYear">Year :- ${el.Year}</p>
-            <p class="plot">Plot:- ${el.Plot}</p>
-            <img class="poster" src="${el.Poster}" alt="Poster Not Found">
-        `
+    const movieDiv = document.createElement('div');
+    movieDiv.className = 'MoviesDiv';
+
+    const title = document.createElement('p');
+    title.textContent = `Movie Title: ${movie.Title}`;
+    const year = document.createElement('p');
+    year.textContent = `Released Year: ${movie.Year}`;
+    const poster = document.createElement('img');
+    poster.src = movie.Poster;
+    poster.alt = `${movie.Title}'s poster`;
+    const plot = document.createElement('p');
+    plot.textContent = `Movie Plot: ${movie.Plot}`;
+
+    movieDiv.append(poster, title, year, plot);
+    mainDiv.append(movieDiv);
 }
 
+async function FetchingMovies() {
+    const movieTitle = InputMovies.value;
 
-const fetchMoviesBySearch = async (e) => {
-    e.preventDefault()
-    const Searchtext = searchbox.value;
-    searchbox.value=""
-    if (!Searchtext){
-        alert("Search box can't be empty");
-        return
+    try {
+        const response = await fetch(`https://www.omdbapi.com/?t=${movieTitle}&apikey=3c81e691`);
+        const data = await response.json();
+        console.log(data);
+        DisplayMovies(data);
+    } catch (error) {
+        console.log('Something Went Wrong', error);
     }
-    try{
-        const res = await fetch(`https://www.omdbapi.com/?apikey=6d39f822&t=${Searchtext}`);
-        const data = await res.json();
-        if (data.Response == "False"){
-            alert("Movie Not Found")
-            return;
-        }
-        displayMovies(data);
-       
-    }
-    catch (err) {
-        console.log("Error in Fetch movie by search function",err)
-    }
-   
 }
-searchBtn.addEventListener("click",fetchMoviesBySearch)
+
+SearchBtn.addEventListener('click', FetchingMovies);
