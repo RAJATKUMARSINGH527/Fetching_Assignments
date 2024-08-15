@@ -1,0 +1,22 @@
+{
+    "todos": [
+          {
+              "id": 1,
+              "title": "Learn Django",
+              "status": false,
+              "assignee": "Venu"
+          },
+          {
+              "id": 2,
+              "title": "Learn Fetch",
+              "status": false,
+              "assignee": "Abdul"
+          },
+          {
+              "id": 3,
+              "title": "Complete All Assignments",
+              "status": false,
+              "assignee": "Mansi"
+          }
+      ]
+  }
